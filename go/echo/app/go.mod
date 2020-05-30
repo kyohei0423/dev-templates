@@ -1,4 +1,5 @@
-module github.com/kyohei0423/oidc-sample/backend/app
+// TODO: Fix url
+module github.com/kyohei0423/dev-templates/go/echo/app
 
 go 1.13
 
