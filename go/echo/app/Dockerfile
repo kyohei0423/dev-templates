@@ -1,7 +1,8 @@
 FROM golang:1.13.6-alpine3.11 as build
 ARG POSTGRESQL_URL=""
+# TODO: Fix App
 ENV GO111MODULE=on \
-    APP=/go/src/github.com/kyohei0423/oidc-sample/app \
+    APP=/go/src/github.com/kyohei0423/sample/app \
     POSTGRESQL_URL=$POSTGRESQL_URL
 WORKDIR $APP
 
