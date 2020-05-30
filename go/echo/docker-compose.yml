@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./app
+      target: build
+      args:
+        - POSTGRESQL_URL="postgres://root:password@db:5432/sample?sslmode=disable" # TODO: Fix DB name
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+    volumes:
+      - .:/go/src/github.com/kyohei0423/sample # TODO: Fix
+    command: ["fresh"]
+
+  db:
+    build:
+      context: ./postgres
+    restart: always
+    ports:
+      - 5433:5432
+    volumes:
+      - "pg-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sample # TODO: Fix DB name
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+
+volumes:
+  pg-data:
